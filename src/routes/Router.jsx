@@ -22,17 +22,17 @@ export const Router = () => {
         <Route path="/signup" component={SignUp} />
         {auth ? (
           <>
-            <Route path="/" component={Home} />
-            <Route path="/task/new" component={NewTask} />
-            <Route path="/list/new" component={NewList} />
-            <Route path="/lists/:listId/tasks/:taskId" component={EditTask} />
-            <Route path="/lists/:listId/edit" component={EditList} />
+            <Route path="/" element={<Home />} />
+            <Route path="/task/new" element={<NewTask />} />
+            <Route path="/list/new" element={<NewList />} />
+            <Route path="/lists/:listId/tasks/:taskId" element={<EditTask />} />
+            <Route path="/lists/:listId/edit" element={<EditList />} />
           </>
         ) : (
           // <Redirect to="/signin" />
           <Navigate replace to="/signin" />
         )}
-        <Route component={NotFound} />
+        <Route element={<NotFound />} />
         {/* </Switch> */}
       </Routes>
     </BrowserRouter>
