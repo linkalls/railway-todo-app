@@ -29,3 +29,68 @@ yarn install
 ```powershell
 yarn start
 ```
+
+
+
+$ yarn start
+yarn run v1.22.22
+Compiled with warnings.
+
+src\components\Header.jsx
+  Line 12:10:  'cookies' is assigned a value but never used    no-unused-vars
+  Line 12:19:  'setCookie' is assigned a value but never used  no-unused-vars
+
+src\pages\EditList.jsx
+  Line 61:6:  React Hook useEffect has missing dependencies: 'cookies.token' and 'listId'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\EditTask.jsx
+  Line 71:6:  React Hook useEffect has missing dependencies: 'cookies.token', 'listId', and 'taskId'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\Home.jsx
+  Line 30:6:    React Hook useEffect has a missing dependency: 'cookies.token'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 48:6:    React Hook useEffect has a missing dependency: 'cookies.token'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 115:20:  Expected '===' and instead saw '=='                                                     
+                          eqeqeq
+
+src\pages\NewTask.jsx
+  Line 53:6:  React Hook useEffect has a missing dependency: 'cookies.token'. Either include it or remove the dependency array  react-hooks/exhaustive-deps 
+
+src\pages\SignIn.jsx
+  Line 19:10:  'cookies' is assigned a value but never used       no-unused-vars
+  Line 19:30:  'removeCookie' is assigned a value but never used  no-unused-vars
+
+src\pages\SignUp.jsx
+  Line 19:10:  'cookies' is assigned a value but never used       no-unused-vars
+  Line 19:30:  'removeCookie' is assigned a value but never used  no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in src\components\Header.jsx
+  Line 12:10:  'cookies' is assigned a value but never used    no-unused-vars
+  Line 12:19:  'setCookie' is assigned a value but never used  no-unused-vars
+
+src\pages\EditList.jsx
+  Line 61:6:  React Hook useEffect has missing dependencies: 'cookies.token' and 'listId'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\EditTask.jsx
+  Line 71:6:  React Hook useEffect has missing dependencies: 'cookies.token', 'listId', and 'taskId'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
+
+src\pages\Home.jsx
+  Line 30:6:    React Hook useEffect has a missing dependency: 'cookies.token'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 48:6:    React Hook useEffect has a missing dependency: 'cookies.token'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  Line 115:20:  Expected '===' and instead saw '=='                                                     
+                          eqeqeq
+
+src\pages\NewTask.jsx
+  Line 53:6:  React Hook useEffect has a missing dependency: 'cookies.token'. Either include it or remove the dependency array  react-hooks/exhaustive-deps 
+
+src\pages\SignIn.jsx
+  Line 19:10:  'cookies' is assigned a value but never used       no-unused-vars
+  Line 19:30:  'removeCookie' is assigned a value but never used  no-unused-vars
+
+src\pages\SignUp.jsx
+  Line 19:10:  'cookies' is assigned a value but never used       no-unused-vars
+  Line 19:30:  'removeCookie' is assigned a value but never used  no-unused-vars
+
+webpack compiled with 1 warning
