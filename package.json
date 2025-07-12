@@ -23,13 +23,15 @@
     "eslint": "^9.31.0",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.3.0",
+    "prettier": "3.6.2",
     "vite": "^6.3.2"
   },
   "scripts": {
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prettier": "prettier --write ."
   },
   "browserslist": {
     "production": [
