@@ -1,12 +1,18 @@
+import { format } from "date-fns"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { AppButton } from "~/components/AppButton"
+import { AppInput } from "~/components/AppInput"
 import { CheckIcon } from "~/icons/CheckIcon"
 import { createTask } from "~/store/task"
 import "./TaskCreateForm.css"
 
 export const TaskCreateForm = () => {
   const dispatch = useDispatch()
+  // datetime-local用の初期値（秒なし、Zなし）
+  const [dateLimit, setDateLimit] = useState(
+    format(new Date(), "yyyy-MM-dd'T'HH:mm"),
+  )
 
   const refForm = useRef(null)
   const [elemTextarea, setElemTextarea] = useState(null)
@@ -55,7 +61,14 @@ export const TaskCreateForm = () => {
 
       setFormState("submitting")
 
-      void dispatch(createTask({ title, detail, done }))
+      // datetime-local → Z形式へ変換
+      let limit = ""
+      if (dateLimit) {
+        // 入力値は "YYYY-MM-DDTHH:mm" なので、秒とZを付与
+        limit = dateLimit + ":00Z"
+      }
+
+      void dispatch(createTask({ title, detail, done, limit }))
         .unwrap()
         .then(() => {
           handleDiscard()
@@ -65,7 +78,7 @@ export const TaskCreateForm = () => {
           setFormState("focused")
         })
     },
-    [title, detail, done],
+    [title, detail, done, dateLimit],
   )
 
   useEffect(() => {
@@ -137,6 +150,12 @@ export const TaskCreateForm = () => {
             onChange={(e) => setDetail(e.target.value)}
             onBlur={handleBlur}
             disabled={formState === "submitting"}
+          />
+          <AppInput
+            type="datetime-local"
+            value={dateLimit}
+            onChange={(e) => setDateLimit(e.target.value)}
+            step="60" // 分単位
           />
           <div className="task_create_form__actions">
             <AppButton
