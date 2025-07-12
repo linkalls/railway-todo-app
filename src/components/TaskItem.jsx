@@ -1,8 +1,9 @@
-import { useState, useCallback } from "react"
-import { Link, useParams } from "react-router-dom"
+import { format } from "date-fns"
+import { useCallback, useState } from "react"
 import { useDispatch } from "react-redux"
-import { PencilIcon } from "~/icons/PencilIcon"
+import { Link, useParams } from "react-router-dom"
 import { CheckIcon } from "~/icons/CheckIcon"
+import { PencilIcon } from "~/icons/PencilIcon"
 import { updateTask } from "~/store/task"
 import "./TaskItem.css"
 
@@ -10,7 +11,8 @@ export const TaskItem = ({ task }) => {
   const dispatch = useDispatch()
 
   const { listId } = useParams()
-  const { id, title, detail, done } = task
+  const { id, title, detail, done, limit } = task
+  console.log("TaskItem", limit)
 
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -53,6 +55,17 @@ export const TaskItem = ({ task }) => {
         </Link>
       </div>
       <div className="task_item__detail">{detail}</div>
+      <div className="task_item__limit">
+        {limit
+          ? (() => {
+              try {
+                return format(new Date(limit), "yyyy/MM/dd HH:mm")
+              } catch {
+                return "期限不明"
+              }
+            })()
+          : "期限なし"}
+      </div>
     </div>
   )
 }

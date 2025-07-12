@@ -6,6 +6,8 @@ const initialState = {
   tasks: null,
   listId: null,
   isLoading: false,
+  // Add limit to the initial state
+  limit : null,
 }
 
 export const taskSlice = createSlice({
@@ -31,8 +33,10 @@ export const taskSlice = createSlice({
       const id = action.payload.id
       const detail = action.payload.detail
       const done = action.payload.done
+      //* limit追加
+      const limit = action.payload.limit || null
 
-      state.tasks.push({ title, id, detail, done })
+      state.tasks.push({ title, id, detail, done, limit })
     },
     mutateTask: (state, action) => {
       const id = action.payload.id

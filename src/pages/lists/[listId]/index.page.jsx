@@ -1,11 +1,11 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
-import { TaskItem } from "~/components/TaskItem"
+import { AppButton } from "~/components/AppButton"
 import { TaskCreateForm } from "~/components/TaskCreateForm"
+import { TaskItem } from "~/components/TaskItem"
 import { setCurrentList } from "~/store/list"
 import { fetchTasks } from "~/store/task"
-import { AppButton } from "~/components/AppButton"
 import "./index.css"
 
 const ListIndex = () => {
@@ -44,6 +44,7 @@ const ListIndex = () => {
             {incompleteTasksCount}
           </span>
         )}
+
         <div className="tasks_list__title_spacer"></div>
         <Link to={`/lists/${listId}/edit`}>
           <AppButton>Edit...</AppButton>
