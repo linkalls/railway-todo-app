@@ -5,6 +5,7 @@ import { BackButton } from "~/components/BackButton"
 import { useId } from "~/hooks/useId"
 import { createList, setCurrentList } from "~/store/list/index"
 import "./index.css"
+import { AppButton } from "~/components/AppButton"
 
 const NewList = () => {
   const id = useId()
@@ -61,9 +62,10 @@ const NewList = () => {
             Cancel
           </Link>
           <div className="new_list__form_actions_spacer"></div>
-          <button type="submit" className="app_button" disabled={isSubmitting}>
+          {/* <button type="submit" className="app_button" disabled={isSubmitting}>
             Create
-          </button>
+          </button> */}
+          <AppButton disabled={isSubmitting}>Create</AppButton>
         </div>
       </form>
     </main>

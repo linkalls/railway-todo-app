@@ -5,6 +5,7 @@ import { TaskItem } from "~/components/TaskItem"
 import { TaskCreateForm } from "~/components/TaskCreateForm"
 import { setCurrentList } from "~/store/list"
 import { fetchTasks } from "~/store/task"
+import { AppButton } from "~/components/AppButton"
 import "./index.css"
 
 const ListIndex = () => {
@@ -45,7 +46,7 @@ const ListIndex = () => {
         )}
         <div className="tasks_list__title_spacer"></div>
         <Link to={`/lists/${listId}/edit`}>
-          <button className="app_button">Edit...</button>
+          <AppButton>Edit...</AppButton>
         </Link>
       </div>
       <div className="tasks_list__items">

@@ -3,6 +3,7 @@ import { Redirect, Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { useLogin } from "~/hooks/useLogin"
 import { useId } from "~/hooks/useId"
+import { AppButton } from "~/components/AppButton"
 import "./index.css"
 
 const SignIn = () => {
@@ -73,9 +74,9 @@ const SignIn = () => {
             Register
           </Link>
           <div className="signin__form_actions_spacer"></div>
-          <button type="submit" className="app_button" disabled={isSubmitting}>
+          <AppButton disabled={isSubmitting}>
             Login
-          </button>
+          </AppButton>
         </div>
       </form>
     </main>
