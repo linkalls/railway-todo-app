@@ -1,4 +1,3 @@
-import { format } from "date-fns"
 import { useCallback, useState } from "react"
 import { useDispatch } from "react-redux"
 import { Link, useParams } from "react-router-dom"
@@ -56,15 +55,8 @@ export const TaskItem = ({ task }) => {
       </div>
       <div className="task_item__detail">{detail}</div>
       <div className="task_item__limit">
-        {limit
-          ? (() => {
-              try {
-                return format(new Date(limit), "yyyy/MM/dd HH:mm")
-              } catch {
-                return "期限不明"
-              }
-            })()
-          : "期限なし"}
+        {/* UTC to JSTはあんまり考慮しなくていい */}
+        {limit ? limit.replace("T", " ").replace("Z", "") : "期限なし"}
       </div>
     </div>
   )

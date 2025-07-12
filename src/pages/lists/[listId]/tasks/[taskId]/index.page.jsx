@@ -1,13 +1,14 @@
-import { useCallback, useState, useEffect } from "react"
+import { format } from "date-fns"
+import { useCallback, useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory, useParams } from "react-router-dom"
-import { useSelector, useDispatch } from "react-redux"
-import { BackButton } from "~/components/BackButton"
-import "./index.css"
-import { setCurrentList } from "~/store/list"
-import { fetchTasks, updateTask, deleteTask } from "~/store/task"
-import { useId } from "~/hooks/useId"
-import { AppInput } from "~/components/AppInput"
 import { AppButton } from "~/components/AppButton"
+import { AppInput } from "~/components/AppInput"
+import { BackButton } from "~/components/BackButton"
+import { useId } from "~/hooks/useId"
+import { setCurrentList } from "~/store/list"
+import { deleteTask, fetchTasks, updateTask } from "~/store/task"
+import "./index.css"
 
 const EditTask = () => {
   const id = useId()
@@ -19,6 +20,7 @@ const EditTask = () => {
   const [title, setTitle] = useState("")
   const [detail, setDetail] = useState("")
   const [done, setDone] = useState(false)
+  const [limit, setLimit] = useState(format(new Date(), "yyyy-MM-dd'T'HH:mm"))
 
   const [errorMessage, setErrorMessage] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -32,6 +34,10 @@ const EditTask = () => {
       setTitle(task.title)
       setDetail(task.detail)
       setDone(task.done)
+      // limitはinput用にZなしローカル形式でセット
+      setLimit(
+        task.limit ? format(new Date(task.limit), "yyyy-MM-dd'T'HH:mm") : "",
+      )
     }
   }, [task])
 
@@ -46,7 +52,12 @@ const EditTask = () => {
 
       setIsSubmitting(true)
 
-      void dispatch(updateTask({ id: taskId, title, detail, done }))
+      // limitをdate-fnsのformatでZ付き（UTC）形式に変換（API用）
+      const limitFormatted = format(new Date(limit), "yyyy-MM-dd'T'HH:mm:ss'Z'")
+
+      void dispatch(
+        updateTask({ id: taskId, title, detail, done, limit: limitFormatted }),
+      )
         .unwrap()
         .then(() => {
           history.push(`/lists/${listId}`)
@@ -58,7 +69,7 @@ const EditTask = () => {
           setIsSubmitting(false)
         })
     },
-    [title, taskId, listId, detail, done],
+    [title, taskId, listId, detail, done, limit],
   )
 
   const handleDelete = useCallback(() => {
@@ -122,6 +133,18 @@ const EditTask = () => {
             />
           </div>
         </fieldset>
+        <fieldset>
+          <label htmlFor={`${id}-limit`} className="edit_list__form_label">
+            Limit
+          </label>
+          <AppInput
+            id={`${id}-limit`}
+            type="datetime-local"
+            value={limit}
+            onChange={(event) => setLimit(event.target.value)}
+            step="60"
+          />
+        </fieldset>
         <div className="edit_list__form_actions">
           <Link to="/" data-variant="secondary" className="app_button">
             Cancel
@@ -135,9 +158,7 @@ const EditTask = () => {
           >
             Delete
           </button>
-          <AppButton disabled={isSubmitting}>
-            Update
-          </AppButton>
+          <AppButton disabled={isSubmitting}>Update</AppButton>
         </div>
       </form>
     </main>

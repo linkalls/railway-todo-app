@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useCallback, useState, useEffect } from "react"
 import { Link, useHistory, useParams } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { BackButton } from "~/components/BackButton"
+import "./index.css"
+import { fetchLists, updateList, deleteList } from "~/store/list"
+import { useId } from "~/hooks/useId"
 import { AppButton } from "~/components/AppButton"
 import { AppInput } from "~/components/AppInput"
-import { BackButton } from "~/components/BackButton"
-import { useId } from "~/hooks/useId"
-import { deleteList, fetchLists, updateList } from "~/store/list"
-import "./index.css"
 
 const EditList = () => {
   const id = useId()
@@ -105,7 +105,9 @@ const EditList = () => {
           >
             Delete
           </button>
-          <AppButton disabled={isSubmitting}>Update</AppButton>
+          <AppButton disabled={isSubmitting}>
+            Update
+          </AppButton>
         </div>
       </form>
     </main>
