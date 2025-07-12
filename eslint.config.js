@@ -1,4 +1,5 @@
 import js from "@eslint/js"
+import eslintConfigPrettier from "eslint-config-prettier/flat"
 import pluginReact from "eslint-plugin-react"
 import { defineConfig } from "eslint/config"
 import globals from "globals"
@@ -27,4 +28,5 @@ export default defineConfig([
       },
     },
   },
+  eslintConfigPrettier,
 ])
