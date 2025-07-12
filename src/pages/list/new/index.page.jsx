@@ -6,6 +6,7 @@ import { useId } from "~/hooks/useId"
 import { createList, setCurrentList } from "~/store/list/index"
 import "./index.css"
 import { AppButton } from "~/components/AppButton"
+import { AppInput } from "~/components/AppInput"
 
 const NewList = () => {
   const id = useId()
@@ -49,9 +50,8 @@ const NewList = () => {
           <label htmlFor={`${id}-title`} className="new_list__form_label">
             Name
           </label>
-          <input
+          <AppInput
             id={`${id}-title`}
-            className="app_input"
             placeholder="Family"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
