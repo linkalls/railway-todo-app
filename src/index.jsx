@@ -1,4 +1,5 @@
 import React, { StrictMode } from 'react'
+import {createRoot} from 'react-dom/client';
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
@@ -15,12 +16,11 @@ axios.interceptors.request.use(config => {
   return config
 })
 
-const root = document.getElementById('root')
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+root.render(
   <StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </StrictMode>,
-  root,
+  </StrictMode>
 )
