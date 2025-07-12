@@ -1,5 +1,4 @@
-import "~/index.css"
-
+import "./AppInput.css"
 
 export const AppInput = (props) => {
   return <input className="app_input" type="text" {...props} />

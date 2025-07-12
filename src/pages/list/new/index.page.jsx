@@ -62,10 +62,8 @@ const NewList = () => {
             Cancel
           </Link>
           <div className="new_list__form_actions_spacer"></div>
-          {/* <button type="submit" className="app_button" disabled={isSubmitting}>
-            Create
-          </button> */}
-          <AppButton disabled={isSubmitting}>Create</AppButton>
+       
+          <AppButton  disabled={isSubmitting}>Create</AppButton>
         </div>
       </form>
     </main>

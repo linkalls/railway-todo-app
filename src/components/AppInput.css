@@ -1,0 +1,17 @@
+.app_input {
+  width: 100%;
+  padding: 0.5em 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.app_input:focus {
+  outline: 2px solid #6366f1;
+  border-color: #6366f1;
+}
+
+.app_input::placeholder {
+  color: #aaa;
+}

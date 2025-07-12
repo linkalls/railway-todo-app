@@ -7,6 +7,7 @@ import { setCurrentList } from "~/store/list"
 import { fetchTasks, updateTask, deleteTask } from "~/store/task"
 import { useId } from "~/hooks/useId"
 import { AppInput } from "~/components/AppInput"
+import { AppButton } from "~/components/AppButton"
 
 const EditTask = () => {
   const id = useId()
@@ -103,7 +104,6 @@ const EditTask = () => {
           </label>
           <textarea
             id={`${id}-detail`}
-            className="app_input"
             placeholder="Blah blah blah"
             value={detail}
             onChange={(event) => setDetail(event.target.value)}
@@ -135,9 +135,9 @@ const EditTask = () => {
           >
             Delete
           </button>
-          <button type="submit" className="app_button" disabled={isSubmitting}>
+          <AppButton disabled={isSubmitting}>
             Update
-          </button>
+          </AppButton>
         </div>
       </form>
     </main>

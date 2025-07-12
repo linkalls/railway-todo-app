@@ -1,4 +1,4 @@
-import "~/index.css"
+import "./AppButton.css"
 
 export const AppButton = (props) => {
   return <button className="app_button" type="submit" {...props}></button>
